@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform playerParentTransform;
     [SerializeField] private float delayToSpawnPlayer = 1f;
 
+    [SerializeField] private CameraController myCamera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +36,8 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        Debug.Log("SpawnPlayer called");
         GameObject player = Instantiate(playerPrefab, new Vector3(6, 0, 5), Quaternion.identity, playerParentTransform);
         currentPlayer = player.GetComponent<PlayerController>();
+        myCamera.SetPlayer(player);
     }
 }
