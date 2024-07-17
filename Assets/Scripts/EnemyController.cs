@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Transform[] target;
     [SerializeField] private float moveSpeed = 4f;
+    [SerializeField, Range(1, 1000)] private int scoreIncrement = 1; 
 
     Rigidbody myRigidBody;
 
@@ -102,6 +103,7 @@ public class EnemyController : MonoBehaviour
     public void Die()
     {
         Debug.Log("EnemyController -> Die");
+        FindObjectOfType<GameManager>().UpdateScore(scoreIncrement);
         Destroy(gameObject);
     }
 }

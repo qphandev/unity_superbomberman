@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private PlayerController currentPlayer;
 
     private int lives = 3;
+    private int score = 0;
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform playerParentTransform;
@@ -18,6 +19,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnPlayer();
+    }
+
+    // Method to set score (on enemy kill).
+    public void UpdateScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        Debug.Log("IncrementScore " + score);
     }
 
     public void PlayerDied()
