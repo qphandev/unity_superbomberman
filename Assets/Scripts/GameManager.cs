@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private CameraController myCamera;
 
+    [SerializeField] private Text myScore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
     {
         score += scoreToAdd;
         Debug.Log("IncrementScore " + score);
+        myScore.text = "SCORE: " + score.ToString("D4");
     }
 
     public void PlayerDied()
@@ -36,7 +40,8 @@ public class GameManager : MonoBehaviour
             --lives;
             Debug.Log("Player has died. Remaining lives: " + lives);
             Invoke("SpawnPlayer", currentPlayer.GetDestroyDelayTime() + delayToSpawnPlayer);
-        } else
+        }
+        else
         {
             Debug.Log("GameManager: No more lives; game over");
         }

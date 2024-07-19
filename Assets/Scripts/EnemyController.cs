@@ -102,7 +102,7 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("EnemyController -> Die");
+        // access gamemanager to update the score when enemy dies
         FindObjectOfType<GameManager>().UpdateScore(scoreIncrement);
         Destroy(gameObject);
     }
