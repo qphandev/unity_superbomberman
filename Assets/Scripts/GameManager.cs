@@ -17,11 +17,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraController myCamera;
 
     [SerializeField] private Text myScore;
+    [SerializeField] private Text myLives;
 
     // Start is called before the first frame update
     void Start()
     {
         SpawnPlayer();
+        UpdateLives();
+    }
+
+    // Tells text to update number of lives in UI
+    public void UpdateLives()
+    {
+        myLives.text = "LIVES: " + lives.ToString();
     }
 
     // Method to set score (on enemy kill).
@@ -38,6 +46,7 @@ public class GameManager : MonoBehaviour
         if (lives > 0)
         {
             --lives;
+            UpdateLives();
             Debug.Log("Player has died. Remaining lives: " + lives);
             Invoke("SpawnPlayer", currentPlayer.GetDestroyDelayTime() + delayToSpawnPlayer);
         }
